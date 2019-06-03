@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
@@ -13,16 +15,20 @@ public class GUI extends JApplet implements ActionListener {
     private JPanel mainMenu = new JPanel();
     private JTextField shippingInput = new JTextField(22);
     private JButton track = new JButton("Track");
+    private HashMap<JButton, JList> refreshButtons = new HashMap<JButton, JList>();
 
     private void addNumber(TrackingNumber trackingNumber){
         JPanel newTab = new JPanel();
-        newTab.setLayout(new GridLayout());
-        newTab.add(new JList(trackingNumber.getTrackingInfo().toArray()));
+        newTab.setLayout(new BorderLayout());
+        JList tracking = new JList(trackingNumber.getTrackingInfo().toArray());
+        JButton refresh = new JButton("Refresh");
+        newTab.add(tracking, BorderLayout.CENTER);
+        newTab.add(refresh, BorderLayout.PAGE_END);
+        refreshButtons.put(refresh, tracking);
         tabs.add(newTab, trackingNumber.getNumber());
     }
 
     public void init(){
-        mainMenu.setLayout(new GridLayout());
         mainMenu.add(shippingInput);
         mainMenu.add(track);
         track.addActionListener(this);
@@ -38,7 +44,11 @@ public class GUI extends JApplet implements ActionListener {
             System.out.println(trackingNum.getTrackingInfo());
             addNumber(trackingNum);
         }
-
+        for(JButton button: refreshButtons.keySet()){
+            if (e.getSource() == button){
+                refreshButtons.get(button).
+            }
+        }
     }
 
 }
