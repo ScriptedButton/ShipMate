@@ -29,7 +29,6 @@ public class Web {
             NodeList summary = document.getDocumentElement().getElementsByTagName("TrackInfo").item(0).getChildNodes();
             List<String> trackingData = new ArrayList<String>();
             for (int i = 0; i < summary.getLength(); i++){
-                System.out.println(summary.item(i).getTextContent());
                 trackingData.add(summary.item(i).getTextContent());
             }
             return trackingData;
