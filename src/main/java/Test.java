@@ -18,7 +18,7 @@ import java.beans.XMLEncoder;
  * Created by 21brooksc on 5/23/2019.
  */
 
-public class Main {
+public class Test {
     public static void main(String[] args) throws UnirestException, ParserConfigurationException, SAXException, IOException{
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();

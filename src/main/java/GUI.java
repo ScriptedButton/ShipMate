@@ -38,13 +38,14 @@ public class GUI extends JApplet implements ActionListener {
         mainMenu.add(shippingInput);
         mainMenu.add(track);
         track.addActionListener(this);
+        shippingInput.addActionListener(this);
         tabs.add(mainMenu, "Main Menu");
 
         add(tabs);
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == track) {
+        if (e.getSource() == track || e.getSource() == shippingInput) {
             //System.out.println("Tracking number inputted: " + shippingInput.getText());
             TrackingNumber trackingNum = new TrackingNumber(shippingInput.getText());
             System.out.println(trackingNum.getTrackingInfo());
@@ -55,6 +56,7 @@ public class GUI extends JApplet implements ActionListener {
                 if (actionButton == (button)) {
                     TrackingNumber tracking = new TrackingNumber(tabs.getTitleAt(tabs.getSelectedIndex()));
                     refreshButtons.get(button).setListData(tracking.getTrackingInfo().toArray());
+                    System.out.println(tracking.getTrackingInfo().toArray()[0]);
                 }
             }
         }
